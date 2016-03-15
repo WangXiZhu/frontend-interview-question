@@ -5,6 +5,7 @@
    之前在找工作找的资料都是学长们用word的形式保存下来的，觉得非常的不方便。这其中会包含一些常问的面试题，以及一些公司的面试题。希望有所帮助。
 
 [TOC]
+
 ###提示与建议
 
 * 拥有一颗强大无比的内心，保持自信，无论何时何地都要相信自己，不要放弃。
@@ -562,7 +563,7 @@
             return mod；
         })(window.module1||{});
 
-7. CMD 与AMD
+7. CMD 与AMD & CommonJs
         
     [AMD 规范](https://github.com/amdjs/amdjs-api/wiki/AMD)
     [CMD规范](https://link.zhihu.com/?target=https://github.com/seajs/seajs/issues/242)
@@ -572,7 +573,15 @@
           类似的还有 CommonJS Modules/2.0 规范，是 BravoJS 在推广过程中对模块定义的规范化产出。还有不少⋯⋯
           这些规范的目的都是为了 JavaScript 的模块化开发，特别是在浏览器端的。
           目前这些规范的实现都能达成浏览器端模块化开发的目的。
+          
+          commonJs是应用在NodeJs，是一种同步的模块机制.
+            大致写法：
+                var firstModule = require("firstModule");
+                //your code...
+                module.export = anotherModule 
+           npm成为主流的JavaScript组件发布平台，也越来越多会依赖。 
 
+           
         区别：
     
         1. 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.
