@@ -6,6 +6,7 @@
 
 [TOC]
 
+
 ###提示与建议
 
 * 拥有一颗强大无比的内心，保持自信，无论何时何地都要相信自己，不要放弃。
@@ -13,7 +14,8 @@
 * 有一份用心、精致的简历。
 
 * 在自己总结的学习中，对于一个问题最好理清思路这样面试的时候更加有条理。最好学会发散思维，联系知识点。
-* 可以从以下几个方面来回答。是什么！！！优点！！缺点！（基本上从这几个方面入手，面试官）
+* 可以从以下几个方面来回答。是什么！！！优点！！缺点！（基本上从这几个方面入手，面试官也没什么问题了，剩下的就是问题的扩展）
+
 
 ### 前端
 以下两个问题很关键，这将是一条很长的路...
@@ -91,6 +93,13 @@
         
         NETWORK:
         cgi/
+4. 简述一下你对HTML语义化的理解
+
+        用正确的标签做正确的事情。
+        html语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析;
+        及时在没有样式CCS情况下也以一种文档格式显示，并且是容易阅读的;
+        搜索引擎的爬虫也依赖于HTML标记来确定上下文和各个关键字的权重，利于SEO;
+        使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。
 
 ### CSS
     
@@ -920,7 +929,9 @@
 16. NodeJs
     
         适用场景：高并发、聊天、实时消息推送
+        优点：因为Node是基于事件驱动和无阻塞的，所以非常适合处理并发请求，因此构建在Node上的代理服务器相比其他技术实现（如Ruby）的服务器表现要好得多。此外，与Node代理服务器交互的客户端代码是由javascript语言编写的，因此客户端和服务器端都用同一种语言编写，这是非常美妙的事情。
 
+        缺点：Node是一个相对新的开源项目，所以不太稳定，它总是一直在变，而且缺少足够多的第三方库支持。看起来，就像是Ruby/Rails当年的样子。
 17. jQuery
         
         jquery缺点
@@ -1544,8 +1555,37 @@
 
 ### 数据结构
 
-作为学过java的童鞋，还是不要把数据结构忘了，记得某某人说过 “程序 ＝ 数据结构 ＋ 算法”，所以把他们放得这么靠后。
+   作为学过java的童鞋，还是不要把数据结构忘了，记得某某人说过 “程序 ＝ 数据结构 ＋ 算法”，所以把他们放得这么靠后。特别像一些大公司特别注重这方面，前端和后端类似刀刃和刀背的关系！比如美团特别重视。
+   在复习的过程中，看得比较多的还是c语言和java版本的。
+   [javascript数据类型和数据结构](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures)
 
+[一些概念](http://blog.jobbole.com/52144/)
+           
+  **栈**
+  
+        function Stack(){
+            this.dataStore = []
+            this.top    = 0;
+            this.push   = push
+            this.pop    = pop
+            this.peek   = peek
+            this.length = length;
+        }
+        function push(element){
+            this.dataStore[this.top++] = element;
+        }
+        function peek(element){
+            return this.dataStore[this.top-1];
+        }
+        function pop(){
+            return this.dataStore[--this.top];
+        }
+        function clear(){
+            this.top = 0
+        }
+        function length(){
+            return this.top
+        }
 
 ### 算法
 
@@ -1553,9 +1593,217 @@
     
 ![常用算法时间复杂度](http://7xklhg.com1.z0.glb.clouddn.com/algorithm%20complexity.png)
 
+2. 数组去重
+        
+        //方式1
+        function diff(array) {
+                var result = {};
+                var newArray = [];
+                for(var i = 0, len = array.length; i < len; i++) {
+                    if(!result[array[i]]) {
+                        newArray.push(array[i]);
+                        result[array[i]] = 1;
+                    }
+                }
+                return newArray;
+            }
+        
+        //方式2
+        Array.prototype.unique4 = function(){
+            this.sort();
+            var re=[this[0]];
+            for(var i = 1; i < this.length; i++)
+            {
+                if( this[i] !== re[re.length-1])
+                {
+                    re.push(this[i]);
+                }
+            }
+            return re;
+        }
 2. js实现常规排序
+    代码还是要有健壮性，下面只实现了功能，没有进行错误检测
     
+        //线性查找-时间复杂度O(n)
+        function linearSearch(arr, x) {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == x) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        
+        //冒泡排序
+        function bubbleSort(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                var sorted = true;
+            //注意：内循环是倒着来的
+                for (var j = arr.length - 1; j > i; j--) {
+                    if (arr[j] < arr[j - 1]) {
+                        swap(arr, j, j - 1);
+                        sorted = false;                   
+                    }
+                }
+                if (sorted) {
+                    return;
+                }
+            }
+        }
     
+        //选择排序 
+        function selectionSort(arr) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                var k = i;
+                for (var j = i + 1; j < arr.length; j++) {
+                    if (arr[j] < arr[k]) {
+                        k = j;
+                    }
+                }
+                if (k != i) {
+                    var t = arr[k];
+                    arr[k] = arr[i];
+                    arr[i] = t;
+                }
+            }
+            return arr;
+        }
+
+    快速排序[阮一峰实现](http://www.ruanyifeng.com/blog/2011/04/quicksort_in_javascript.html)
+                
+        //快速排序－阮一峰实现，比传统容易理解
+        var quickSort = function(arr) {
+        　　if (arr.length <= 1) { return arr; }
+        　　var pivotIndex = Math.floor(arr.length / 2);
+        　　var pivot = arr.splice(pivotIndex, 1)[0];
+        　　var left = [];
+        　　var right = [];
+        　　for (var i = 0; i < arr.length; i++){
+        　　　　if (arr[i] < pivot) {
+        　　　　　　left.push(arr[i]);
+        　　　　} else {
+        　　　　　　right.push(arr[i]);
+        　　　　}
+        　　}
+        　　return quickSort(left).concat([pivot], quickSort(right));
+        };
+
+        // 方法二
+        function quickSort(array, left, right) {
+            if (Object.prototype.toString.call(array).slice(8, -1) === 'Array' && typeof left === 'number' && typeof right === 'number') {
+                if (left < right) {
+                    var x = array[right], i = left - 1, temp;
+                    for (var j = left; j <= right; j++) {
+                        if (array[j] <= x) {
+                            i++;
+                            temp = array[i];
+                            array[i] = array[j];
+                            array[j] = temp;
+                        }
+                    }
+                    quickSort(array, left, i - 1);
+                    quickSort(array, i + 1, right);
+                };
+            } else {
+                return 'array is not an Array or left or right is not a number!';
+            }
+        }  
+        var aaa = [3, 5, 2, 9, 1];
+        quickSort(aaa, 0, aaa.length - 1);
+        console.log(aaa);
+
+
+        //归并排序
+        function mergeSort(array, p, r) {
+            if (p < r) {
+                var q = Math.floor((p + r) / 2);
+                mergeSort(array, p, q);
+                mergeSort(array, q + 1, r);
+                merge(array, p, q, r);
+            }
+        }
+        function merge(array, p, q, r) {
+            var n1 = q - p + 1, n2 = r - q, left = [], right = [], m = n = 0;
+            for (var i = 0; i < n1; i++) {
+                left[i] = array[p + i];
+            }
+            for (var j = 0; j < n2; j++) {
+                right[j] = array[q + 1 + j];
+            }
+            left[n1] = right[n2] = Number.MAX_VALUE;
+            for (var k = p; k <= r; k++) {
+                if (left[m] <= right[n]) {
+                    array[k] = left[m];
+                    m++;
+                } else {
+                    array[k] = right[n];
+                    n++;
+                }
+            }
+        }
+
+
+
+   factorial
+
+        function factorial(n) {
+            if (n === 0) {
+                return 1;
+            } else {
+                return n * factorial(n - 1);
+            }
+        }
+
+    
+    4.数组常用方法
+    es5中添加了很多数组的方法，可以了解
+    [MDN Array](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array)
+    
+  创建数组  
+        
+        var array1 = new Array();  //数组构造方法
+        var array2 = [];   //对象字面量（推荐）
+    
+    数组检测
+            
+        var arr = [];
+        Array.isArray(arr);     //true,数组自带方法
+        array instanceof Array;   //true
+    
+    数组排序和翻转，注意排序是按照对应字符串逐个编码排序的
+        
+         var arr2 =  [21,14,54,35,23,44,103];
+         arr2.reverse();//[103, 44, 23, 35, 54, 14, 21]
+         arr2.sort(function(a,b){return a - b;}); //[14, 21, 23, 35, 44, 54, 103]
+
+
+| 方法      |     描述 | 
+| :--------: | :--------:| 
+| concat()    |     连接两个或更多的数组，并返回结果。 |
+| slice() | 选取数组的的一部分，并返回一个新数组。 |
+| splice() | 从数组中添加或删除元素。 |
+| indexOf() | 搜索数组中的元素，并返回它所在的位置。 |
+
+[javascript数组对象](http://www.runoob.com/jsref/jsref-obj-array.html)
+
+
+4.string方法[javascript字符串方法](http://www.runoob.com/js/js-obj-string.html)
+    
+    a).substr()与substring()区别
+        substring(start,end)  开始和结束的位置，从零开始的索引
+
+        substr(start [, length ]) substr 方法用于返回一个从指定位置开始的指定长度的子字符串。
+        如果start为负数，则start=str.length+start。
+        如果 length 为 0 或负数，将返回一个空字符串。
+        
+        var str = "0123456789";
+        console.log(str.substring(5)); --> "56789"
+        console.log(str.substring(0,5)); --> "01234"
+        
+        console.log(str.substr(-5));  --> "56789"
+        console.log(str.substr(2,2)); --> "23"
+    toString()
+
 ### 操作系统
 
 1. 堆和栈的区别
@@ -1596,3 +1844,20 @@
         死锁的解除与预防：理解了死锁的原因，尤其是产生死锁的四个必要条件，就可以最大可能地避免、预防和解除死锁。所以，在系统设计、进程调度等方面注意如何不让这四个必要条件成立，如何确定资源的合理分配算法，避免进程永久占据系统资源。此外，也要防止进程在处于等待状态的情况下占用资源。因此，对资源的分配要给予合理的规划。
         死锁的处理策略：鸵鸟策略、预防策略、避免策略、检测与恢复策略。
 
+### git
+[git学习操作](http://pcottle.github.io/learnGitBranching/?Demo)
+
+###什么是好的前端工程师
+    
+1.  了解web是如何工作的，确保你知道域名、DNS，URL,HTTP,网络，浏览器，服务器／服务托管，数据库，JSON，API，HTML，CSS，DOM和Javascript，了解这些的目的是确保你知道他们如何一起工作以及每部分的作用，并简单学习本机web应用（SPA）
+2.  学习HTML，CSS，可访问性和SEO
+3.  学习UI设计模式的基本原理，交互设计，用户体验设计和可用性
+4.  学习编程的基本思想
+5.  学习Javascript
+6.  学习JSON和API
+7.  学习CLI/命令行
+8.  学习软件工程实践（如：应用设计／构架，模板，Git，测试，监控，自动化，代码质量）
+9.  定义自己的工具箱
+10. 学习node.js
+
+基础(DOM,Css,Html,Javascript,UI模式)>进阶（Jquery,Less）
