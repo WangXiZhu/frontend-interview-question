@@ -1506,7 +1506,7 @@
 
 
 2. webpack + tree-shaking
-    
+    [webpack官网](https://webpack.github.io/docs)
     
     [webpack是什么](https://github.com/webpack)
 
@@ -1527,7 +1527,15 @@
             c) 浏览器端足迹小，移动端友好，却对热加载乃至热替换有很好的支持
             d) 插件机制完善，实现本身实现同样模块化，容易扩展，支持es6，react等
             e) 需要手写配置
-            
+        
+        优点：
+            a) 支持主流模块格式（AMD、CommonJs、globals）
+            b) 能快速检测有错的模块
+            c) 能操作css
+            d) 有综合性强的缓存机制（如果你的项目涉及到CDN）
+            e) 支持热部署（App 代码请求 HMR 运行时应用更新）
+            f) 几乎能加载所有的东西（文档有加载的list）
+
         tree-shaking
             tree-shaking是RollUP中的一种技术，tree-shaking是下一代前端打包工具(PS:这一代斗没有用好，前端发展太快了)
             通过 tree-shaking 打包的结果只包括  /*实际用到的 exports*/。Three-shaking 的关键在于依赖 ES6 模块的静态结构。“静态结构”意味着在编译时他们是可分解的，而不用执行它们的任何代码，简单理解是ES6导出的部分如果在其它模块没有调用，rollup在输出时会直接把这部分作为死码删除。
