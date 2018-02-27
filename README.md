@@ -1340,11 +1340,11 @@
 
         function loadImage(url,callback) {     
             var img = new Image();     
-            img.src = url;     
             img.onload = function(){         
                 document.appendChild(img); //添加到document中        
                 callback.call(img);     
             }
+            img.src = url; 
          }
 
     
