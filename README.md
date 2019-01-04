@@ -33,6 +33,7 @@
 其实大部分的知识点都是书中的，而且书里面更加的详细，更能系统性地归纳自己的知识体系。
 
 [前端书籍](https://pan.baidu.com/s/1EZAuOsQKT6-w6sQj1TdC8Q) 提取码：a9pn
+> [各种编程书籍](https://github.com/WangXiZhu/free-programming-books/blob/master/free-programming-books-zh.md)
 
 
 ### HTML
